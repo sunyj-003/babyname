@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>孙宝宝取名 · 卡片集 🐴</title>
+<meta name="description" content="孙永杰 & 李丝宇 的马年宝宝取名卡片：一川、一帆、逸川、骏逸、书尧、昭明、栀意、栀夏、灼华、槿礼、心澄、玖安、夏禾">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐴%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg1:#FBF3E6;
+    --bg2:#F6E5D2;
+    --card:#FFFDF9;
+    --ink:#43322A;
+    --ink-soft:#8A7564;
+    --line:#EFDFC9;
+    --amber:#B97F3A;
+    --amber-deep:#9A6630;
+    --amber-soft:#F8E9D0;
+    --rose:#C4675B;
+    --rose-deep:#A8544A;
+    --rose-soft:#FAE4DD;
+    --gold:#D9A441;
+    --wx-jin:#C9A227;
+    --wx-mu:#7FA05E;
+    --wx-shui:#5E93B8;
+    --wx-huo:#D96A4E;
+    --wx-tu:#A9745A;
+    --shadow:0 10px 30px rgba(151,108,63,.12);
+    --shadow-hover:0 20px 46px rgba(151,108,63,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,sans-serif;
+    background:linear-gradient(180deg,var(--bg1),var(--bg2) 60%,#F9EBDD);
+    color:var(--ink);
+    min-height:100vh;
+    overflow-x:hidden;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+
+  /* ---- 背景装饰 ---- */
+  .deco{position:fixed;border-radius:50%;filter:blur(70px);opacity:.55;z-index:-1;pointer-events:none}
+  .deco-1{width:420px;height:420px;background:#F4D9AE;top:-120px;left:-100px}
+  .deco-2{width:380px;height:380px;background:#F3C9BC;bottom:-130px;right:-90px}
+
+  /* ---- 吸顶筛选栏 ---- */
+  .tabs{
+    position:sticky;top:10px;z-index:50;
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
+    width:fit-content;max-width:calc(100% - 24px);
+    margin:16px auto 0;
+    padding:6px;
+    border-radius:999px;
+    background:rgba(255,253,248,.78);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    border:1px solid rgba(239,223,201,.9);
+    box-shadow:0 10px 28px rgba(151,108,63,.16);
+  }
+  .tab{
+    cursor:pointer;border:none;background:transparent;color:var(--ink-soft);
+    padding:9px 22px;border-radius:999px;font-size:14px;font-weight:600;
+    font-family:inherit;letter-spacing:1px;
+    transition:all .25s ease;
+  }
+  .tab:hover{color:var(--ink)}
+  .tab.active[data-tab="all"]{background:var(--ink);color:#fff}
+  .tab.active[data-tab="boy"]{background:var(--amber);color:#fff}
+  .tab.active[data-tab="girl"]{background:var(--rose);color:#fff}
+
+  main{max-width:1180px;margin:0 auto;padding:20px 16px 40px}
+
+  /* ---- 分组 ---- */
+  .group{
+    margin-top:26px;padding:26px 22px 30px;border-radius:32px;
+    border:1px solid rgba(239,223,201,.85);
+    animation:rise .7s both;
+  }
+  .group.boy{background:linear-gradient(180deg,rgba(248,233,208,.6),rgba(255,253,248,.4))}
+  .group.girl{background:linear-gradient(180deg,rgba(250,228,221,.55),rgba(255,253,248,.4))}
+  .group.girl{animation-delay:.1s}
+
+  .group-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .emblem{
+    width:48px;height:48px;border-radius:16px;flex:none;
+    display:grid;place-items:center;font-size:24px;
+    box-shadow:var(--shadow);
+  }
+  .group.boy .emblem{background:linear-gradient(135deg,#F6E3C2,#EFCB98)}
+  .group.girl .emblem{background:linear-gradient(135deg,#F9DCD3,#F2C2B4)}
+  .group-head h2{font-size:28px;letter-spacing:4px;font-family:"STKaiti","Kaiti SC","KaiTi","Songti SC",serif}
+  .group-head .count{
+    color:var(--ink-soft);font-size:12px;background:#fff;
+    border:1px solid var(--line);border-radius:999px;padding:3px 12px;flex:none;
+  }
+  .group-head::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+
+  /* ---- 卡片网格 ---- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:24px;
+    padding:22px 22px 18px;
+    box-shadow:var(--shadow);
+    transition:transform .3s ease,box-shadow .3s ease;
+    animation:rise .6s both;position:relative;overflow:hidden;
+  }
+  .card:nth-child(1){animation-delay:.05s}
+  .card:nth-child(2){animation-delay:.1s}
+  .card:nth-child(3){animation-delay:.15s}
+  .card:nth-child(4){animation-delay:.2s}
+  .card:nth-child(5){animation-delay:.25s}
+  .card:nth-child(6){animation-delay:.3s}
+  .card:nth-child(7){animation-delay:.35s}
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:5px;
+    background:linear-gradient(90deg,var(--amber),var(--gold));
+    transition:height .25s ease;
+  }
+  .card[data-gender="girl"]::before{background:linear-gradient(90deg,var(--rose),#EBA08C)}
+  .card:hover::before{height:7px}
+
+  .card-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .chip{font-size:11.5px;font-weight:600;padding:4px 12px;border-radius:999px;letter-spacing:1px;white-space:nowrap}
+  .chip.gender-boy{background:var(--amber-soft);color:var(--amber-deep)}
+  .chip.gender-girl{background:var(--rose-soft);color:var(--rose-deep)}
+  .chip.wx{border:1px solid var(--line);color:var(--ink-soft);background:#fff;display:inline-flex;align-items:center;gap:6px}
+  .chip.wx::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+  .chip.wx.wx-jin{color:var(--wx-jin);background:#FBF6E3}
+  .chip.wx.wx-mu{color:var(--wx-mu);background:#F0F6E9}
+  .chip.wx.wx-shui{color:var(--wx-shui);background:#EAF2F8}
+  .chip.wx.wx-huo{color:var(--wx-huo);background:#FBEAE4}
+  .chip.wx.wx-tu{color:var(--wx-tu);background:#F5EDE6}
+
+  .name-row{display:flex;align-items:baseline;gap:12px;margin-top:14px}
+  .name{
+    font-size:clamp(38px,6vw,46px);line-height:1.1;letter-spacing:6px;
+    font-family:"STKaiti","Kaiti SC","KaiTi","Songti SC",serif;font-weight:700;
+    background:linear-gradient(120deg,var(--amber-deep),var(--amber));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .card[data-gender="girl"] .name{background:linear-gradient(120deg,var(--rose-deep),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pinyin{color:var(--ink-soft);font-size:13px;letter-spacing:3px;margin-top:2px}
+
+  .fav{
+    margin-left:auto;background:none;border:none;cursor:pointer;font-size:22px;
+    color:#D9C3A6;line-height:1;padding:6px;
+    transition:transform .2s ease,color .2s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .fav:hover{transform:scale(1.18)}
+  .fav:active{transform:scale(.92)}
+  .fav.on{color:#E25B4E}
+
+  /* ---- 拆字五行 ---- */
+  .breakdown{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+  .char-pill{
+    display:inline-flex;align-items:center;gap:6px;
+    background:#FBF4E8;border:1px solid var(--line);border-radius:10px;
+    padding:5px 12px;font-size:16px;font-weight:600;
+  }
+  .card[data-gender="girl"] .char-pill{background:#FBF1EC}
+  .char-pill em{font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;color:#fff}
+  em.wx-jin{background:var(--wx-jin)}
+  em.wx-mu{background:var(--wx-mu)}
+  em.wx-shui{background:var(--wx-shui)}
+  em.wx-huo{background:var(--wx-huo)}
+  em.wx-tu{background:var(--wx-tu)}
+
+  /* ---- 寓意 / 出处 ---- */
+  .meta{display:flex;flex-direction:column;gap:12px}
+  .meta-item{display:flex;gap:10px;font-size:13.5px;line-height:1.75}
+  .meta-item .ico{
+    flex:none;width:26px;height:26px;border-radius:9px;margin-top:2px;
+    display:grid;place-items:center;font-size:13px;
+    background:#FBF4E8;border:1px solid var(--line);
+  }
+  .card[data-gender="girl"] .meta-item .ico{background:#FBF1EC}
+  .meta-item dt{flex:none;font-weight:700;color:var(--ink)}
+  .meta-item dd{color:#5D4C3D}
+  .meta-item dd b{color:var(--amber);font-weight:600}
+  .card[data-gender="girl"] .meta-item dd b{color:var(--rose)}
+
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+  .tag{
+    font-size:11.5px;color:var(--amber-deep);background:#FFF7EA;
+    border:1px solid #F0DDBF;padding:4px 10px;border-radius:999px;letter-spacing:.5px;
+  }
+  .card[data-gender="girl"] .tag{color:var(--rose-deep);background:#FDF0EB;border-color:#F3D9D0}
+
+  /* ---- 页脚 ---- */
+  footer{
+    text-align:center;padding:10px 20px 44px;
+    color:var(--ink-soft);font-size:12.5px;line-height:2;
+  }
+
+  /* ---- 手机自适应 ---- */
+  @media (max-width:760px){
+    .tabs{top:8px;margin-top:12px;padding:5px}
+    .tab{padding:8px 18px;font-size:13px}
+    .group{margin-top:16px;padding:18px 14px 22px;border-radius:24px}
+    .group-head{margin-bottom:16px}
+    .group-head h2{font-size:23px;letter-spacing:3px}
+    .emblem{width:42px;height:42px;border-radius:14px;font-size:20px}
+    .grid{grid-template-columns:1fr;gap:16px}
+    .card{padding:20px 18px 16px;border-radius:20px}
+    .name{font-size:38px;letter-spacing:5px}
+    .card-head{gap:6px}
+    .chip{padding:3px 10px;font-size:11px}
+    footer{padding-bottom:30px}
+  }
+  @media (max-width:380px){
+    .name{font-size:34px;letter-spacing:4px}
+    .tag{font-size:11px}
+  }
+</style>
+</head>
+<body>
+  <div class="deco deco-1"></div>
+  <div class="deco deco-2"></div>
+
+  <nav class="tabs" aria-label="筛选">
+    <button class="tab active" data-tab="all">✨ 全部</button>
+    <button class="tab" data-tab="boy">👦 男孩</button>
+    <button class="tab" data-tab="girl">👧 女孩</button>
+  </nav>
+
+  <main>
+    <!-- ============ 男孩 ============ -->
+    <section class="group boy" data-group="boy">
+      <div class="group-head">
+        <div class="emblem">🐴</div>
+        <h2>男孩</h2>
+        <span class="count">6 个名字</span>
+      </div>
+      <div class="grid">
+
+        <!-- 一川 -->
+        <article class="card" data-gender="boy">
+          <div class="card-head">
+            <span class="chip gender-boy">👦 男孩</span>
+            <span class="chip wx wx-shui">五行 · 水</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">一川</h3>
+            <button class="fav" data-name="一川" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">yī chuān</p>
+          <div class="breakdown">
+            <span class="char-pill">一 <em class="wx-shui">水</em></span>
+            <span class="char-pill">川 <em class="wx-shui">水</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd>一马平川，前程坦荡；开阔从容，一路畅通无阻。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>成语「一马平川」；宋·贺铸《青玉案》「<b>一川烟草</b>，满城风絮」亦添文气。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">🐴 谐音「一马平川」</span>
+            <span class="tag">🏔 大气开阔</span>
+            <span class="tag">✒️ 笔画极简</span>
+          </div>
+        </article>
+
+        <!-- 一帆 -->
+        <article class="card" data-gender="boy">
+          <div class="card-head">
+            <span class="chip gender-boy">👦 男孩</span>
+            <span class="chip wx wx-shui">五行 · 水 · 水</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">一帆</h3>
+            <button class="fav" data-name="一帆" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">yī fān</p>
+          <div class="breakdown">
+            <span class="char-pill">一 <em class="wx-shui">水</em></span>
+            <span class="char-pill">帆 <em class="wx-shui">水</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd><b>一帆风顺</b>，前程顺遂；长风破浪，直挂云帆。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>成语「一帆风顺」；唐·王湾《次北固山下》「潮平两岸阔，<b>风正一帆悬</b>」。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">⛵ 一帆风顺</span>
+            <span class="tag">🧣 巾字根 · 宜马年</span>
+            <span class="tag">🪶 和「一川」成对</span>
+          </div>
+        </article>
+
+        <!-- 逸川 -->
+        <article class="card" data-gender="boy">
+          <div class="card-head">
+            <span class="chip gender-boy">👦 男孩</span>
+            <span class="chip wx wx-tu">五行 · 土 · 水</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">逸川</h3>
+            <button class="fav" data-name="逸川" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">yì chuān</p>
+          <div class="breakdown">
+            <span class="char-pill">逸 <em class="wx-tu">土</em></span>
+            <span class="char-pill">川 <em class="wx-shui">水</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd>潇洒飘逸、自在从容；如江河奔流，气度不凡、不疾不徐。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>由「一川」雅化而来，<b>「逸」</b>取飘逸超然、安闲自在之意。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">🦋 潇洒飘逸</span>
+            <span class="tag">🏔 「一川」雅化</span>
+            <span class="tag">🔤 声调起伏好听</span>
+          </div>
+        </article>
+
+        <!-- 骏逸 -->
+        <article class="card" data-gender="boy">
+          <div class="card-head">
+            <span class="chip gender-boy">👦 男孩</span>
+            <span class="chip wx wx-jin">五行 · 金 · 土</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">骏逸</h3>
+            <button class="fav" data-name="骏逸" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">jùn yì</p>
+          <div class="breakdown">
+            <span class="char-pill">骏 <em class="wx-jin">金</em></span>
+            <span class="char-pill">逸 <em class="wx-tu">土</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd>如骏马奔腾，俊逸潇洒；才华出众，一往无前。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>「<b>骏</b>」为良马美称，合「飘逸」之姿；源出骏马意象（曹植《白马篇》）。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">🐴 马字根 · 最贴马年</span>
+            <span class="tag">⚡ 矫健潇洒</span>
+            <span class="tag">🔤 仄起平收</span>
+          </div>
+        </article>
+
+        <!-- 书尧 -->
+        <article class="card" data-gender="boy">
+          <div class="card-head">
+            <span class="chip gender-boy">👦 男孩</span>
+            <span class="chip wx wx-jin">五行 · 金 · 土</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">书尧</h3>
+            <button class="fav" data-name="书尧" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">shū yáo</p>
+          <div class="breakdown">
+            <span class="char-pill">书 <em class="wx-jin">金</em></span>
+            <span class="char-pill">尧 <em class="wx-tu">土</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd><b>腹有诗书，德如尧舜</b>——书香文雅，圣贤气度。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>「书」为翰墨书香；「尧」为上古五帝之一，<b>圣明贤德</b>（尧字三土，火马年火生土，得时得气）。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">📖 书香文雅</span>
+            <span class="tag">👑 尧帝 · 圣贤气度</span>
+            <span class="tag">🔥 土得火马年之气</span>
+          </div>
+        </article>
+
+        <!-- 昭明 -->
+        <article class="card" data-gender="boy">
+          <div class="card-head">
+            <span class="chip gender-boy">👦 男孩</span>
+            <span class="chip wx wx-huo">五行 · 火 · 水</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">昭明</h3>
+            <button class="fav" data-name="昭明" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">zhāo míng</p>
+          <div class="breakdown">
+            <span class="char-pill">昭 <em class="wx-huo">火</em></span>
+            <span class="char-pill">明 <em class="wx-shui">水</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd><b>光明磊落，明德昭彰</b>；文采风流，如昭明太子。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>《尚书·尧典》「百姓<b>昭明</b>，协和万邦」；梁昭明太子萧统编《昭明文选》。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">📜 尧典 · 同书尧一脉</span>
+            <span class="tag">🔥 昭属火 · 应丙午马年</span>
+            <span class="tag">📚 昭明文选</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ 女孩 ============ -->
+    <section class="group girl" data-group="girl">
+      <div class="group-head">
+        <div class="emblem">🌸</div>
+        <h2>女孩</h2>
+        <span class="count">7 个名字</span>
+      </div>
+      <div class="grid">
+
+        <!-- 栀意 -->
+        <article class="card" data-gender="girl">
+          <div class="card-head">
+            <span class="chip gender-girl">👧 女孩</span>
+            <span class="chip wx wx-mu">五行 · 木 · 土</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">栀意</h3>
+            <button class="fav" data-name="栀意" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">zhī yì</p>
+          <div class="breakdown">
+            <span class="char-pill">栀 <em class="wx-mu">木</em></span>
+            <span class="char-pill">意 <em class="wx-tu">土</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd>栀子花语「<b>永恒的爱与守护</b>」；谐音「知意」，知心合意、温柔坚定。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>栀子花意象；谐音「知意」，亦纪念 <b>5.5 婚礼</b> 之约。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">🌸 草木字根 · 宜马年</span>
+            <span class="tag">💍 婚礼彩蛋</span>
+            <span class="tag">💌 谐音「知意」</span>
+          </div>
+        </article>
+
+        <!-- 栀夏 -->
+        <article class="card" data-gender="girl">
+          <div class="card-head">
+            <span class="chip gender-girl">👧 女孩</span>
+            <span class="chip wx wx-mu">五行 · 木 · 火</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">栀夏</h3>
+            <button class="fav" data-name="栀夏" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">zhī xià</p>
+          <div class="breakdown">
+            <span class="char-pill">栀 <em class="wx-mu">木</em></span>
+            <span class="char-pill">夏 <em class="wx-huo">火</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd>立夏正是栀子花开时，<b>纯净恒久的爱</b>从立夏开始；承「栀意」之韵。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>栀子花于立夏绽放；纪念 <b>5.5 立夏婚礼</b> 之约。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">🌿 5.5 立夏婚礼纪念</span>
+            <span class="tag">🌸 木字根 · 宜马年</span>
+            <span class="tag">🎐 承「栀意」之韵</span>
+          </div>
+        </article>
+
+        <!-- 灼华 -->
+        <article class="card" data-gender="girl">
+          <div class="card-head">
+            <span class="chip gender-girl">👧 女孩</span>
+            <span class="chip wx wx-huo">五行 · 火 · 木</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">灼华</h3>
+            <button class="fav" data-name="灼华" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">zhuó huá</p>
+          <div class="breakdown">
+            <span class="char-pill">灼 <em class="wx-huo">火</em></span>
+            <span class="char-pill">华 <em class="wx-mu">木</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd>「灼灼其华」，明艳照人；才华与生命力热烈绽放。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>《诗经·周南·桃夭》「桃之夭夭，<b>灼灼其华</b>」。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">📖 诗经出处</span>
+            <span class="tag">🔥 火字根 · 马年旺</span>
+            <span class="tag">🌷 明艳热烈</span>
+          </div>
+        </article>
+
+        <!-- 槿礼 -->
+        <article class="card" data-gender="girl">
+          <div class="card-head">
+            <span class="chip gender-girl">👧 女孩</span>
+            <span class="chip wx wx-mu">五行 · 木 · 火</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">槿礼</h3>
+            <button class="fav" data-name="槿礼" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">jǐn lǐ</p>
+          <div class="breakdown">
+            <span class="char-pill">槿 <em class="wx-mu">木</em></span>
+            <span class="char-pill">礼 <em class="wx-huo">火</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd>谐音「<b>锦鲤</b>」，好运祥瑞；木槿温柔坚韧，彬彬有礼。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>谐音「锦鲤」；木槿古称「舜」，《诗经》「<b>颜如舜华</b>」。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">🎏 锦鲤 · 好运</span>
+            <span class="tag">🌿 木字根 · 宜马年</span>
+            <span class="tag">💖 好记有梗</span>
+          </div>
+        </article>
+
+        <!-- 心澄 -->
+        <article class="card" data-gender="girl">
+          <div class="card-head">
+            <span class="chip gender-girl">👧 女孩</span>
+            <span class="chip wx wx-jin">五行 · 金 · 水</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">心澄</h3>
+            <button class="fav" data-name="心澄" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">xīn chéng</p>
+          <div class="breakdown">
+            <span class="char-pill">心 <em class="wx-jin">金</em></span>
+            <span class="char-pill">澄 <em class="wx-shui">水</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd>谐音「<b>心想事成</b>」；心清如水，澄澈通透、安然自在。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>谐音吉语「心想事成」；「澄」取清澈明净之意。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">🌊 心想事成</span>
+            <span class="tag">🕊 清雅通透</span>
+            <span class="tag">🔤 读音最顺</span>
+          </div>
+        </article>
+
+        <!-- 玖安 -->
+        <article class="card" data-gender="girl">
+          <div class="card-head">
+            <span class="chip gender-girl">👧 女孩</span>
+            <span class="chip wx wx-tu">五行 · 土 · 土</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">玖安</h3>
+            <button class="fav" data-name="玖安" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">jiǔ ān</p>
+          <div class="breakdown">
+            <span class="char-pill">玖 <em class="wx-tu">土</em></span>
+            <span class="char-pill">安 <em class="wx-tu">土</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd>九月降生，<b>长长久久平安</b>；「玖」亦为黑色美玉，如珍宝般珍重。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>谐音「久安」；《诗经·卫风·木瓜》「投我以木李，<b>报之以琼玖</b>」，玖为美玉。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">🎂 九月出生彩蛋</span>
+            <span class="tag">🕊 久安 · 长久平安</span>
+            <span class="tag">🏠 宀字根 · 宜马年</span>
+          </div>
+        </article>
+
+        <!-- 夏禾 -->
+        <article class="card" data-gender="girl">
+          <div class="card-head">
+            <span class="chip gender-girl">👧 女孩</span>
+            <span class="chip wx wx-huo">五行 · 火 · 木</span>
+          </div>
+          <div class="name-row">
+            <h3 class="name">夏禾</h3>
+            <button class="fav" data-name="夏禾" aria-label="收藏">♡</button>
+          </div>
+          <p class="pinyin">xià hé</p>
+          <div class="breakdown">
+            <span class="char-pill">夏 <em class="wx-huo">火</em></span>
+            <span class="char-pill">禾 <em class="wx-mu">木</em></span>
+          </div>
+          <dl class="meta">
+            <div class="meta-item"><span class="ico">✨</span><dt>寓意</dt><dd>立夏种下约定，金秋结出果实——从 <b>5.5 婚礼</b> 到 <b>9.21 宝宝</b> 的完整故事线。</dd></div>
+            <div class="meta-item"><span class="ico">📖</span><dt>出处</dt><dd>「夏」取立夏（婚礼当日节气）；「禾」为金秋丰收之谷、<b>马年大吉字根</b>。</dd></div>
+          </dl>
+          <div class="tags">
+            <span class="tag">🌾 立夏 → 金秋故事线</span>
+            <span class="tag">🔥 火·木相生 · 应丙午火马年</span>
+            <span class="tag">🐴 禾字根 · 宜马年</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>点卡片右上角 ♡ 收藏心仪名字 · 五行依姓名学常见标注，供取名参考</p>
+    <p>定名请结合宝宝出生时辰八字与长辈意见 🍀</p>
+  </footer>
+
+<script>
+  // 切换 全部 / 男孩 / 女孩
+  const tabs = document.querySelectorAll('.tab');
+  const groups = document.querySelectorAll('.group');
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const g = tab.dataset.tab;
+    groups.forEach(sec => {
+      sec.style.display = (g === 'all' || sec.dataset.group === g) ? '' : 'none';
+    });
+  }));
+
+  // 收藏 ♡ / ❤（localStorage 持久化）
+  const favs = JSON.parse(localStorage.getItem('sunBabyFavs') || '[]');
+  const favBtns = document.querySelectorAll('.fav');
+  const setFav = btn => {
+    const on = favs.includes(btn.dataset.name);
+    btn.classList.toggle('on', on);
+    btn.textContent = on ? '❤' : '♡';
+  };
+  favBtns.forEach(btn => {
+    setFav(btn);
+    btn.addEventListener('click', () => {
+      const n = btn.dataset.name;
+      const i = favs.indexOf(n);
+      if (i >= 0) favs.splice(i, 1); else favs.push(n);
+      localStorage.setItem('sunBabyFavs', JSON.stringify(favs));
+      setFav(btn);
+    });
+  });
+</script>
+</body>
+</html>
